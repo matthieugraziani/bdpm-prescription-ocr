@@ -1,0 +1,8 @@
+streamlit
+easyocr
+opencv-python
+rapidfuzz
+requests
+pandas
+pillow
+python-dotenv
