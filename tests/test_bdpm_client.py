@@ -1,8 +1,9 @@
-from unittest.mock import MagicMock, patch
-
 import requests
 
 from api.bdpm_client import check_api_status, search_medicine
+from unittest.mock import MagicMock, patch
+
+
 
 
 @patch("api.bdpm_client.requests.get")

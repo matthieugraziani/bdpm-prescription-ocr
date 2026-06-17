@@ -1,7 +1,5 @@
-from unittest.mock import patch
-
 from services.analyzer import analyze_lines, to_dataframe
-
+from unittest.mock import patch
 
 @patch("services.analyzer.search_medicine")
 def test_analyze_lines_matched_calls_bdpm(mock_search):
