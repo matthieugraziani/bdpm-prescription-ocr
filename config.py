@@ -1,2 +1,2 @@
 import os
-API_URL=os.getenv('BDPM_API_URL','http://localhost:8000')
+API_URL=os.getenv('BDPM_API_URL','https://bdpm-database.onrender.com')
