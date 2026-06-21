@@ -45,7 +45,7 @@ def load_images_from_upload(uploaded):
 
         pdf_document = fitz.open(stream=uploaded.read(), filetype="pdf")
         for page in pdf_document:
-            pixmap = page.get_pixmap(dpi=200)
+            pixmap = page.get_pixmap(dpi=100)
             page_image = Image.frombytes(
                 "RGB", (pixmap.width, pixmap.height), pixmap.samples
             )
