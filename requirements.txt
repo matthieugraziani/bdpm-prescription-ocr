@@ -1,6 +1,8 @@
 streamlit
 easyocr
-opencv-python
+torch
+torchvision
+opencv-python-headless
 rapidfuzz
 requests
 pandas
@@ -8,3 +10,4 @@ pillow
 python-dotenv
 numpy
 pymupdf
+pyarrow
