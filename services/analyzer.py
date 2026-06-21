@@ -55,26 +55,38 @@ def analyze_lines(lines, threshold=80):
 
 def to_dataframe(results):
     """
-    Convertit une liste de résultats d'analyse (issus de `analyze_lines`)
-    en DataFrame pandas, prête à être affichée ou exportée en CSV.
-
-    NOTE: la colonne "Résultat BDPM" contient le JSON brut renvoyé par
-    l'API (ou le message d'erreur). Une fois le schéma exact de l'API BDPM
-    confirmé, il est préférable d'extraire ici des colonnes dédiées
-    (ex. dénomination, dosage, code CIS, etc.) plutôt que le JSON brut.
+    Convertit une liste de résultats en DataFrame affichable par Streamlit.
     """
+
     rows = []
 
     for result in results:
+
+        bdpm = result["resultat_bdpm"]
+
+        # Transformer la réponse API en texte lisible
+        if isinstance(bdpm, list) and len(bdpm) > 0:
+            first = bdpm[0]
+
+            bdpm_text = (
+                f"{first.get('DENOMINATION', '')} "
+                f"(CIS: {first.get('CIS', '')}) - "
+                f"{first.get('TITULAIRES', '')}"
+            )
+
+        elif isinstance(bdpm, dict):
+            bdpm_text = str(bdpm)
+
+        else:
+            bdpm_text = result["erreur"] or ""
+
         rows.append(
             {
                 "Ligne OCR": result["ligne_ocr"],
                 "Médicament détecté": result["medicament"],
                 "Score (%)": result["score_matching"],
                 "Reconnu": "Oui" if result["matched"] else "Non",
-                "Résultat BDPM": result["resultat_bdpm"]
-                if result["resultat_bdpm"] is not None
-                else result["erreur"] or "",
+                "Résultat BDPM": bdpm_text,
             }
         )
 

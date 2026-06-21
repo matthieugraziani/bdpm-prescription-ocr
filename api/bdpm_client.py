@@ -13,7 +13,9 @@ def search_medicine(name, timeout=10):
     """
     try:
         response = requests.get(
-            f"{API_URL}/search", params={"name": name}, timeout=timeout
+            f"{API_URL}/medicaments/search",
+            params={"q": name},
+            timeout=timeout
         )
         response.raise_for_status()
     except requests.exceptions.RequestException as exc:
