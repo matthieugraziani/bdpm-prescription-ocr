@@ -2,15 +2,7 @@ import streamlit as st
 
 
 def render_result_row(result):
-    """
-    Affiche le résultat d'analyse d'une ligne d'ordonnance.
 
-    Args:
-        result: dict tel que renvoyé par
-            `services.analyzer.analyze_lines`, avec les clés
-            "ligne_ocr", "medicament", "score_matching", "matched",
-            "resultat_bdpm", "erreur".
-    """
     with st.container(border=True):
         st.markdown(f"**Ligne OCR :** {result['ligne_ocr']}")
 
@@ -32,13 +24,7 @@ def render_result_row(result):
 
 
 def render_api_status(is_up):
-    """
-    Affiche un indicateur de statut de l'API BDPM dans la barre latérale.
 
-    Args:
-        is_up: booléen indiquant si l'API répond, généralement obtenu via
-            `api.bdpm_client.check_api_status()`.
-    """
     if is_up:
         st.sidebar.success("API BDPM : en ligne")
     else:

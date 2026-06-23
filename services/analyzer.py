@@ -5,24 +5,7 @@ from matcher.fuzzy_match import normalize
 
 
 def analyze_lines(lines, threshold=80):
-    """
-    Analyse une liste de lignes de texte (OCR ou saisie manuelle).
 
-    Pour chaque ligne non vide :
-    - normalise le texte et tente de le faire correspondre à un nom de
-      médicament de référence (fuzzy matching) ;
-    - si une correspondance suffisamment fiable est trouvée, interroge
-      l'API BDPM pour récupérer les informations associées.
-
-    Args:
-        lines: liste de chaînes de texte (une par ligne d'ordonnance).
-        threshold: seuil de confiance transmis à `normalize()`.
-
-    Returns:
-        Une liste de dicts, un par ligne non vide, avec les clés :
-        "ligne_ocr", "medicament", "score_matching", "matched",
-        "resultat_bdpm", "erreur".
-    """
     results = []
 
     for raw_line in lines:
@@ -54,9 +37,6 @@ def analyze_lines(lines, threshold=80):
 
 
 def to_dataframe(results):
-    """
-    Convertit une liste de résultats en DataFrame affichable par Streamlit.
-    """
 
     rows = []
 

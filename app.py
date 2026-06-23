@@ -34,10 +34,7 @@ threshold = st.slider(
 
 
 def load_images_from_upload(uploaded):
-    """
-    Convertit un fichier importé (image ou PDF) en liste d'images numpy RGB,
-    une par page pour un PDF, ou une seule image pour un fichier image.
-    """
+
     images = []
 
     if uploaded.type == "application/pdf":
